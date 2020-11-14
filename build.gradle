@@ -1,0 +1,78 @@
+buildscript {
+
+    ext {
+        //dependencies service
+        springVersion = '2.0.5.RELEASE'
+        springBootVersion ='2.1.6.RELEASE'
+        postgresVersion = '42.2.5'
+        sonarQubeVersion ='2.6.2'
+        lombokVersion = '1.18.4'
+        log4jVersion = '2.11.1'
+        commonsLangVersion ='3.9'
+        mockitoVersion = '2.8.47'
+        powerMockitoVersion = '1.7.4'
+        commonFrameworkVersion = '1.0-local-SNAPSHOT'
+        swaggerVersion = '2.9.2'
+
+        // component version settings
+        releaseNumber = '1'
+        sprintNumber = '0'
+        buildNumber = System.getenv('BUILD_NUMBER') == null ? 'local' : System.getenv('BUILD_NUMBER')
+        sonarQubeSite = ''
+        nexusRepository = ''
+        nexusUser = System.getenv('NEXUS_USER')
+        nexusPass = System.getenv('NEXUS_PASS')
+    }
+
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+        classpath "org.sonarsource.scanner.gradle:sonarqube-gradle-plugin:${sonarQubeVersion}"
+    }
+}
+
+/** ########### RUNTIME PLUGINS  **/
+
+apply plugin: 'java'
+apply plugin: 'org.springframework.boot'
+apply plugin: 'io.spring.dependency-management'
+apply plugin: 'maven'
+
+/** ########### CODE QUALITY PLUGINS  **/
+
+//apply plugin: 'findbugs'
+apply plugin: 'pmd'
+apply plugin: 'jacoco'
+apply plugin: 'checkstyle'
+apply plugin: "org.sonarqube"
+
+group = 'co.com.usb.platform'
+archivesBaseName = 'license-validation-service'
+version = "${releaseNumber}.${sprintNumber}-${buildNumber}-SNAPSHOT"
+
+
+sourceCompatibility = 1.8
+
+
+/** ########### CODE QUALITY CONFIGURATION  **/
+
+apply from: 'service-dependencies.gradle'
+apply from: 'code-quality-config.gradle'
+apply from: 'cv-framework-config.gradle'
+
+repositories {
+    mavenLocal()
+    mavenCentral()
+    maven { url "https://repo.spring.io/milestone" }
+}
+
+dependencies {
+    implementation SPRING_BOOT_RUNTIME
+    compile LOMBOK, LOG4J2, COMMONS_LANG, SWAGGER
+    testImplementation SPRING_BOOT_UT, MOCKING
+}
+
+
+

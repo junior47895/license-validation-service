@@ -1,0 +1,8 @@
+server:
+   port: 9000
+   servlet:
+      contextPath: /license-api
+      
+logging:
+   level:
+      org.springframework.web.filter.CommonsRequestLoggingFilter: DEBUG

@@ -1,0 +1,43 @@
+ext {
+
+	SPRING_BOOT_RUNTIME = [
+			[group: 'org.springframework.boot', name: 'spring-boot-starter-actuator'],
+			[group: 'org.springframework.boot', name: 'spring-boot-starter-web'],
+			[group: 'org.springframework', name: 'spring-context-support'],
+			[group: 'org.springframework.boot', name: 'spring-boot-starter-data-mongodb'],
+			[group: 'org.apache.commons', name: 'commons-collections4', version: '4.4'],
+			[group: 'org.apache.camel', name: 'camel-util', version: '3.6.0']
+
+	]
+
+	LOMBOK = [
+		[group: 'org.projectlombok', name: 'lombok', version: lombokVersion]
+	]
+	
+	LOG4J2 = [
+	    [group: 'org.apache.logging.log4j', name: 'log4j-api', version: log4jVersion],
+	    [group: 'org.apache.logging.log4j', name: 'log4j-core', version: log4jVersion]
+	]	
+	
+	COMMONS_LANG =[
+	 	[group: 'org.apache.commons', name: 'commons-lang3', version: commonsLangVersion]
+	]
+
+    
+    SWAGGER = [
+    	   [group: 'io.springfox', name: 'springfox-swagger2', version: swaggerVersion],
+    	   [group: 'io.springfox', name: 'springfox-swagger-ui', version: swaggerVersion]
+    ]
+    
+    SPRING_BOOT_UT = [
+            [group: 'org.springframework.boot', name: 'spring-boot-starter-test']
+    ]
+
+    MOCKING = [
+            [group: 'org.mockito', name: 'mockito-core', version: mockitoVersion],
+            [group: 'org.powermock', name: 'powermock-api-mockito2', version: powerMockitoVersion],
+            [group: 'org.powermock', name: 'powermock-module-junit4', version: powerMockitoVersion]
+    ]	
+	
+	
+}
